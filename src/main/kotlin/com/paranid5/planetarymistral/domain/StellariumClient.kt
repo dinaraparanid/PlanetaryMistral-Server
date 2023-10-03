@@ -5,17 +5,15 @@ import com.paranid5.planetarymistral.data.SpaceObjectType
 import com.paranid5.planetarymistral.data.SystemStatus
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
-import org.springframework.web.reactive.function.client.ClientResponse
-import org.springframework.web.reactive.function.client.WebClient
-import org.springframework.web.reactive.function.client.bodyToMono
+import org.springframework.web.reactive.function.client.*
 
-inline val WebClient.systemStatus
-    get() = get()
+suspend inline fun WebClient.getSystemStatus() =
+    get()
         .uri("/main/status")
         .accept(MediaType.APPLICATION_JSON)
-        .exchangeToMono { response -> response.toResult<SystemStatus>() }
+        .awaitExchange { response -> response.toResult<SystemStatus>() }
 
-fun WebClient.setTime(jday: Double, timeRate: Double) =
+suspend inline fun WebClient.setTime(jday: Double, timeRate: Double) =
     post()
         .uri { builder ->
             builder.path("/main/time")
@@ -24,9 +22,9 @@ fun WebClient.setTime(jday: Double, timeRate: Double) =
                 .build()
         }
         .accept(MediaType.TEXT_PLAIN)
-        .exchangeToMono { response -> response.toResult<String>() }
+        .awaitExchange { response -> response.toResult<String>() }
 
-fun WebClient.setLocation(latitude: Double, longitude: Double) =
+suspend inline fun WebClient.setLocation(latitude: Double, longitude: Double) =
     post()
         .uri { builder ->
             builder.path("/location/setlocationfields")
@@ -35,15 +33,25 @@ fun WebClient.setLocation(latitude: Double, longitude: Double) =
                 .build()
         }
         .accept(MediaType.TEXT_PLAIN)
-        .exchangeToMono { response -> response.toResult<String>() }
+        .awaitExchange { response -> response.toResult<String>() }
 
-inline val WebClient.listSpaceObjectTypes
-    get() = get()
+suspend inline fun WebClient.getListSpaceObjectTypes() =
+    get()
         .uri("/objects/listobjecttypes")
         .accept(MediaType.APPLICATION_JSON)
-        .exchangeToMono { response -> response.toResult<List<SpaceObjectType>>() }
+        .awaitExchange { response -> response.toResult<List<SpaceObjectType>>() }
 
-fun WebClient.getSpaceObjectInfo(name: String) =
+suspend inline fun WebClient.getListSpaceObjectsByType(type: String) =
+    get()
+        .uri { builder ->
+            builder.path("/objects/listobjectsbytype")
+                .queryParam("type", type)
+                .build()
+        }
+        .accept(MediaType.APPLICATION_JSON)
+        .awaitExchange { response -> response.toResult<List<String>>() }
+
+suspend inline fun WebClient.getSpaceObjectInfo(name: String) =
     get()
         .uri { builder ->
             builder.path("/objects/info")
@@ -52,9 +60,9 @@ fun WebClient.getSpaceObjectInfo(name: String) =
                 .build()
         }
         .accept(MediaType.APPLICATION_JSON)
-        .exchangeToMono { response -> response.toResult<SpaceObject>() }
+        .awaitExchange { response -> response.toResult<SpaceObject>() }
 
-inline fun <reified T : Any> ClientResponse.toResult() = when (statusCode()) {
-    HttpStatus.OK -> bodyToMono<T>().map { Result.success(it!!) }
-    else -> createException().map { Result.failure(it) }
+suspend inline fun <reified T : Any> ClientResponse.toResult() = when (statusCode()) {
+    HttpStatus.OK -> Result.success(awaitBody<T>())
+    else -> Result.failure(createExceptionAndAwait())
 }
