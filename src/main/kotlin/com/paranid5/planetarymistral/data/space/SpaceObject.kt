@@ -1,4 +1,4 @@
-package com.paranid5.planetarymistral.data
+package com.paranid5.planetarymistral.data.space
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty

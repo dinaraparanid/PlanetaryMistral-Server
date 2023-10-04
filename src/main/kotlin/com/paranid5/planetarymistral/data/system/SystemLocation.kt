@@ -1,6 +1,6 @@
-package com.paranid5.planetarymistral.data
+package com.paranid5.planetarymistral.data.system
 
-data class SpaceLocation(
+data class SystemLocation(
     val altitude: Int,
     val landscapeKey: String,
     val latitude: Double,

@@ -1,9 +1,13 @@
-package com.paranid5.planetarymistral.domain
+package com.paranid5.planetarymistral.domain.controllers
 
+import com.paranid5.planetarymistral.domain.clients.getSystemStatus
+import com.paranid5.planetarymistral.domain.clients.setLocation
+import com.paranid5.planetarymistral.domain.clients.setTime
 import com.paranid5.planetarymistral.domain.utils.ext.toJulianDay
 import com.paranid5.planetarymistral.domain.utils.ext.toResponseEntity
 import kotlinx.datetime.Instant
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -17,6 +21,7 @@ import org.springframework.web.reactive.function.client.WebClient
 @RequestMapping("system")
 class SystemController {
     @Autowired
+    @Qualifier("stellarium-client")
     private lateinit var stellariumClient: WebClient
 
     @GetMapping("/system_status", produces = ["application/json"])

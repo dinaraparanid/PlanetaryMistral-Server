@@ -6,7 +6,11 @@ import org.springframework.web.reactive.function.client.WebClient
 
 @Configuration
 class AppConfig {
-    @Bean
+    @Bean(name = ["stellarium-client"])
     fun stellariumClient() =
         WebClient.create("http://localhost:8090/api")
+
+    @Bean(name = ["wheather-client"])
+    fun wheatherClient() =
+        WebClient.create("https://api.open-meteo.com/v1")
 }

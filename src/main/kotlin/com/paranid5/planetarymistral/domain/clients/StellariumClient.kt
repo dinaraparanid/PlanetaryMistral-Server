@@ -1,8 +1,8 @@
-package com.paranid5.planetarymistral.domain
+package com.paranid5.planetarymistral.domain.clients
 
-import com.paranid5.planetarymistral.data.SpaceObject
-import com.paranid5.planetarymistral.data.SpaceObjectType
-import com.paranid5.planetarymistral.data.SystemStatus
+import com.paranid5.planetarymistral.data.space.SpaceObject
+import com.paranid5.planetarymistral.data.space.SpaceObjectType
+import com.paranid5.planetarymistral.data.system.SystemStatus
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.web.reactive.function.client.*

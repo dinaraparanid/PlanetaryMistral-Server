@@ -1,8 +1,11 @@
-package com.paranid5.planetarymistral.domain
+package com.paranid5.planetarymistral.domain.controllers
 
-import com.paranid5.planetarymistral.data.SpaceObjectType
+import com.paranid5.planetarymistral.data.space.SpaceObjectType
+import com.paranid5.planetarymistral.domain.clients.getListSpaceObjectTypes
+import com.paranid5.planetarymistral.domain.clients.getListSpaceObjectsByType
 import com.paranid5.planetarymistral.domain.utils.ext.toResponseEntity
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -16,6 +19,7 @@ import org.springframework.web.reactive.function.client.WebClient
 @RequestMapping("space-objects")
 class SpaceObjectController {
     @Autowired
+    @Qualifier("stellarium-client")
     private lateinit var stellariumClient: WebClient
 
     @GetMapping("/types", produces = ["application/json"])

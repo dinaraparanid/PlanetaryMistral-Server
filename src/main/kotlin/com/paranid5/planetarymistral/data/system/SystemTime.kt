@@ -1,6 +1,6 @@
-package com.paranid5.planetarymistral.data
+package com.paranid5.planetarymistral.data.system
 
-data class SpaceTime(
+data class SystemTime(
     val deltaT: Double,
     val gmtShift: Double,
     val isTimeNow: Boolean,
