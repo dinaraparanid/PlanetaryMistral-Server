@@ -10,7 +10,7 @@ class AppConfig {
     fun stellariumClient() =
         WebClient.create("http://localhost:8090/api")
 
-    @Bean(name = ["wheather-client"])
-    fun wheatherClient() =
+    @Bean(name = ["weather-client"])
+    fun weatherClient() =
         WebClient.create("https://api.open-meteo.com/v1")
 }

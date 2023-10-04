@@ -8,7 +8,7 @@
 
 ## **About App**
 
-API for **Planetary Mistral** - planetarium that considers wheather conditions.
+API for **Planetary Mistral** - planetarium that considers weather conditions.
 
 ## **Stack**
 
@@ -26,8 +26,8 @@ API for **Planetary Mistral** - planetarium that considers wheather conditions.
 ### **Implemented features**
 
 1. Integration with Stellarium API (system, space objects)
-2. Integration with Open-Meteo API (wheather in location)
-3. System, space and wheather requests
+2. Integration with Open-Meteo API (weather in location)
+3. System, space and weather requests
 
 ## **License**
 *GNU Public License V 3.0*

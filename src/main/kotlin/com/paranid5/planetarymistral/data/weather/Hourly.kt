@@ -1,4 +1,4 @@
-package com.paranid5.planetarymistral.data.whether
+package com.paranid5.planetarymistral.data.weather
 
 data class Hourly(
     val time: List<String>,

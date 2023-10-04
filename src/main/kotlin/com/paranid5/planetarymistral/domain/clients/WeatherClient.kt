@@ -1,6 +1,6 @@
 package com.paranid5.planetarymistral.domain.clients
 
-import com.paranid5.planetarymistral.data.whether.WeatherForecast
+import com.paranid5.planetarymistral.data.weather.WeatherForecast
 import org.springframework.http.MediaType
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitExchange

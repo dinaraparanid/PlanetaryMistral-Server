@@ -1,4 +1,4 @@
-package com.paranid5.planetarymistral.data.whether
+package com.paranid5.planetarymistral.data.weather
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -14,4 +14,4 @@ data class WeatherForecast(
     val elevation: Double,
     @JsonProperty("hourly_units") val hourlyUnits: HourlyUnits,
     val hourly: Hourly
-)
+) : WeatherForecastResponse

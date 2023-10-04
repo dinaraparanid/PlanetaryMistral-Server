@@ -1,0 +1,3 @@
+package com.paranid5.planetarymistral.data.weather
+
+sealed interface WeatherForecastResponse
