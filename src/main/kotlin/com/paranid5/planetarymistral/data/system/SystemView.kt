@@ -1,4 +1,6 @@
 package com.paranid5.planetarymistral.data.system
 
-@JvmInline
-value class SystemView(val fov: Int)
+import lombok.NoArgsConstructor
+
+@NoArgsConstructor
+data class SystemView(val fov: Int)

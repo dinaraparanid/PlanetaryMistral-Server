@@ -1,5 +1,8 @@
 package com.paranid5.planetarymistral.data.system
 
+import lombok.NoArgsConstructor
+
+@NoArgsConstructor
 data class SystemTime(
     val deltaT: Double,
     val gmtShift: Double,
